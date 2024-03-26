@@ -15,3 +15,8 @@ print(math_object.symbol)
 print(math_object.position_in_string)
 print(math_object.object_family)
 print(math_object.equation_string)
+
+
+math_object = e.equation_interpretation
+for element in math_object:
+    print(element.symbol)
