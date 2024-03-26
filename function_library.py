@@ -28,7 +28,7 @@ class Math_operator(Equat_object):
     #The math operator belongs to the object family, for example "equation1"
     #We now have to give this object the corresponding mathematical symbol, and save its position in the string
     def __init__(self, obj_type, element_str, position_in_string,object_family, equation_string):
-        super().__init__(object_family, equation_string)
+        super().__init__(object_family, equation_string) #every math operator is used within an equation. Therefore the math operators will inherit the particular equation and the equation in string format from the Equat_object class
         self.obj_type = 'math_op'
         self.symbol = element_str
         self.position_in_string = position_in_string
