@@ -23,7 +23,7 @@ class Equat_object: #math objects can be for example equations
                 element = Math_operator('math_op',element,position)
                 self.equation_interpretation.append(element)
                 
-class Math_operator:
+class Math_operator(Equat_object):
     #The math operator is now a subclass of Equat_object.
     #The math operator belongs to the object family, for example "equation1"
     #We now have to give this object the corresponding mathematical symbol, and save its position in the string
