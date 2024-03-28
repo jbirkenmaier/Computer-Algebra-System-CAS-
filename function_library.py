@@ -13,23 +13,23 @@ def classify_line(string_input, object_number): #the beginning of a line (first 
 #The object number determines the family of the object.
 #It will be created when a new line is entered and is unique to that object
     if string_input[0] == '=': #calculation
-        calc_obj = Calc_object(object_number, string_input)
+        return Calc_object(object_number, string_input)
         #calc_obj.interpretation_of_string_input()
-        #last line has still some issues to be solved, see Calc_object class comment
-        
+        #above line has still some issues to be solved, see Calc_object class comment
+    
     if string_input[0:1]=='eq': #equation object
         eq_obj = Equat_object(object_number, string_input)
         eq_obj.interpretation_of_string_input()
         #last two lines might be pulled out of the condition, lets check this later
         
 class Calc_object:
-    def __init__(self,object_family, equation_string):
+    def __init__(self,object_family, calculation_string):
         self.object_family = object_family
-        self.calculation_string = equation_string
+        self.calculation_string = calculation_string
         self.calculation_interpretation = []
 
-    def calculate():
-        return eval(equation_string[1:])
+    def calculate(self):
+        self.result = eval(self.calculation_string[1:])
 
     def interpretation_of_string_input(self):
         for position, element in enumerate(self.calculation_string):   #the attributes of the math objects are variables, constants and mathematical operators
