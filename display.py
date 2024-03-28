@@ -10,6 +10,9 @@ def printInput():
     label = tk.Label(root, text = inp)
     label.pack()
 
+def read_input():
+    inp = inputtxt.get("end-1c linestart", "end-1c lineend")
+
 def on_enter(event):
     printInput()
 
