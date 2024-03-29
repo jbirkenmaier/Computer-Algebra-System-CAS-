@@ -1,4 +1,4 @@
-math_operators = {'+', '-', '*', '/', '**', '%', '//'}
+math_operators = {'+', '-', '*', '/', '**', '%', '//', '='}
 math_object_declarations = {'equat'}
 attribute_declarations = {'var', 'const'}
 
@@ -46,16 +46,60 @@ class Equat_object: #math objects can be for example equations
         self.object_family = object_family
         self.equation_string = equation_string
         self.equation_interpretation = []
-
+        self.operators=[]
+        self.terms = []
+        self.equation_syntax_correct = True
     #def attribute_type:
     #    pass
 
     def interpretation_of_string_input(self):
+        for operator in math_operators:
+            self.operator_positions = self.equation_string.find(operator)
+            if self.operator_positions != -1:
+                operator = Math_operator('math_op',operator,position,self.object_family, self.equation_string)
+                operator.position_in_string = self.equation_string.find(operator)
+                self.operators.append(operator)
+            else:
+                self.equation_syntax_correct = False
+                print('Not an equation')
+
+        self.operators.sort(lambda = x : x.position_in_string) #Making sure that the operators are in correct order
+
+        current_read = 0 #read the string input starting from zero
+        
+        for index, element in enumerate(self.operators):
+            if self.operators[index].position_in_string >= current_read:
+                term = self.equation_string[current_read:self.operators[index].position_in_string]
+            else:
+                term = self.equation_string[self.operators[index].position_in_string+len(operators[index].symbol):] #the last term
+            print(term)
+            if term != "":
+                self.terms.append(term)
+            current_read=operators[index].position_in_string #setting the current reading position to the operator position inside the string
+            current_read+=len(operators[index].symbol)#skip the operators
+
+'''
+To do:
+I have to introduce a subclass "term" to the Equat object class so that I can manipulate terms and store information about them.
+'''            
+
+        
+        for position, element in enumerate(operator_positions):
+            if position == 0 and operator_positions[0] != 0: #if the equation does not start with an operator (like a sum for example)
+                term = self.string_input[0:element]
+            elif position == 0 and operator_positions[0] == 0: #if the equation starts with an operator
+                term = self.string_input[len():operator_positions[1]]
         for position, element in enumerate(self.equation_string):   #the attributes of the math objects are variables, constants and mathematical operators
-            if element in math_operators:
-                element = Math_operator('math_op',element,position,self.object_family, self.equation_string)
+            if element.isdigit():
                 self.equation_interpretation.append(element)
-                
+                .insert(2, 'x')
+
+
+#                self.equation_interpretation.append(element)
+
+
+
+
 class Math_operator(Equat_object):
     #The math operator is now a subclass of Equat_object.
     #The math operator belongs to the object family, for example "equation1"
