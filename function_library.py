@@ -8,6 +8,10 @@ object types (obj_type):
     math_op -> math operator, mathematical operator inside an equation
 '''
 
+'''
+To do:
+I have to introduce a subclass "term" to the Equat object class so that I can manipulate terms and store information about them.
+'''   
 
 def classify_line(string_input, object_number): #the beginning of a line (first 2 strings)should indicate what kind of input is given
 #The object number determines the family of the object.
@@ -63,7 +67,7 @@ class Equat_object: #math objects can be for example equations
                 self.equation_syntax_correct = False
                 print('Not an equation')
 
-        self.operators.sort(lambda = x : x.position_in_string) #Making sure that the operators are in correct order
+        self.operators.sort(lambda x : x.position_in_string) #Making sure that the operators are in correct order
 
         current_read = 0 #read the string input starting from zero
         
@@ -77,13 +81,7 @@ class Equat_object: #math objects can be for example equations
                 self.terms.append(term)
             current_read=operators[index].position_in_string #setting the current reading position to the operator position inside the string
             current_read+=len(operators[index].symbol)#skip the operators
-
-'''
-To do:
-I have to introduce a subclass "term" to the Equat object class so that I can manipulate terms and store information about them.
-'''            
-
-        
+            
         for position, element in enumerate(operator_positions):
             if position == 0 and operator_positions[0] != 0: #if the equation does not start with an operator (like a sum for example)
                 term = self.string_input[0:element]
@@ -92,7 +90,6 @@ I have to introduce a subclass "term" to the Equat object class so that I can ma
         for position, element in enumerate(self.equation_string):   #the attributes of the math objects are variables, constants and mathematical operators
             if element.isdigit():
                 self.equation_interpretation.append(element)
-                .insert(2, 'x')
 
 
 #                self.equation_interpretation.append(element)
